@@ -422,6 +422,9 @@ bool _remoteCommandsInitialized = false;
             [player setAudioTrack:name index: index];
         } else if ([@"setMixWithOthers" isEqualToString:call.method]){
             [player setMixWithOthers:[argsMap[@"mixWithOthers"] boolValue]];
+        } else if ([@"getCachePath" isEqualToString:call.method]) {
+            NSString* cacheKey = argsMap[@"cacheKey"];
+            result([_cacheManager getCachePath:cacheKey]);
         } else if ([@"preCache" isEqualToString:call.method]){
             NSDictionary* dataSource = argsMap[@"dataSource"];
             NSString* urlArg = dataSource[@"uri"];
