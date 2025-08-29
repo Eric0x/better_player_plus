@@ -289,6 +289,14 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
+  Future<String?> getCachePath(String cacheKey) {
+    return _channel.invokeMethod<String>(
+      'getCachePath',
+      <String, dynamic>{'cacheKey': cacheKey},
+    );
+  }
+
+  @override
   Future<void> preCache(DataSource dataSource, int preCacheSize) {
     final Map<String, dynamic> dataSourceDescription = <String, dynamic>{
       'key': dataSource.key,

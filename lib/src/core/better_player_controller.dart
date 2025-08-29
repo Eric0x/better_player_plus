@@ -1219,6 +1219,10 @@ class BetterPlayerController {
     return VideoPlayerController.clearCache();
   }
 
+  Future<String?> getCachePath(String cacheKey) async {
+    return VideoPlayerController.getCachePath(cacheKey);
+  }
+
   ///Build headers map that will be used to setup video player controller. Apply
   ///DRM headers if available.
   Map<String, String?> _getHeaders() {

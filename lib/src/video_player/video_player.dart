@@ -629,6 +629,10 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
     return _videoPlayerPlatform.clearCache();
   }
 
+  static Future<String?> getCachePath(String cacheKey) async {
+    return _videoPlayerPlatform.getCachePath(cacheKey);
+  }
+
   static Future preCache(DataSource dataSource, int preCacheSize) async {
     return _videoPlayerPlatform.preCache(dataSource, preCacheSize);
   }
