@@ -85,6 +85,15 @@ import PINCache
         }
         self.completionHandler?(false)
     }
+
+    lazy var disk: DiskStorage<String,Data>? = {
+        return try? DiskStorage<String,Data>(config: diskConfig, transformer: TransformerFactory.forCodable(ofType: Data.self))
+    }()
+
+    @objc public func getCachePath(_ cacheKey: String)-> String{
+        let data = try? disk?.entry(forKey: cacheKey)
+        return (data?.filePath) ?? ""
+    }
     
     ///Gets caching player item for normal playback.
     @objc public func getCachingPlayerItemForNormalPlayback(_ url: URL, cacheKey: String?, videoExtension: String?, headers: Dictionary<NSObject,AnyObject>) -> AVPlayerItem? {
